@@ -5,7 +5,7 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 
-<%@include file="/html/common/header2.jsp"%>
+<%@include file="/html/common/header.jsp"%>
 
 <h2>Conductores cercanos:</h2>
       <table border="1">

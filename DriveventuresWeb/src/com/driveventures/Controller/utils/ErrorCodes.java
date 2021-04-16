@@ -22,6 +22,10 @@ public interface ErrorCodes {
 		
 		public static final String NOT_ENOUGH = "NOT_ENOUGH";
 		
+		public static final String ERROR_USER = "erroruser";
+		public static final String ERROR_PASSWORD = "errorpassword";
+		public static final String GENERIC_ERROR = "generic.error";
+		
 	}
 	
 

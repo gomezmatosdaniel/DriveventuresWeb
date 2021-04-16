@@ -14,27 +14,30 @@
     <title>Driveventures</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
     <!-- Plugin CSS -->
-    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="../vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/creative.min2.css" rel="stylesheet">
+    <link href="../css/creative.min2.css" rel="stylesheet">
+    
+   <script>(function(w, d) { w.CollectId = "607486f25d8493507d58346d"; var h = d.head || d.getElementsByTagName("head")[0]; var s = d.createElement("script"); s.setAttribute("type", "text/javascript"); s.async=true; s.setAttribute("src", "https://collectcdn.com/launcher.js"); h.appendChild(s); })(window, document);</script>
 
   </head>
+
 
   <body id="page-top">
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="Home.jsp"> Driveventures</a>
+        <a class="navbar-brand js-scroll-trigger" href="common/Home.jsp"> Driveventures</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -53,7 +56,7 @@
               <a class="nav-link js-scroll-trigger" href="#contact">Contacto</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="../html/registro.jsp">Registrate</a>
+              <a class="nav-link js-scroll-trigger" href="registro.jsp">Registrate</a>
             </li>
              <li class="nav-item">
              <p>Usuario: <strong>${usr.nombre}</strong></p>

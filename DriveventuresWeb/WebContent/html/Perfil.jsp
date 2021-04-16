@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.*,com.driveventures.model.*" %>
 
-<%@include file="/html/common/header2.jsp"%>
+<%@include file="/html/common/header.jsp"%>
 
 
 <%

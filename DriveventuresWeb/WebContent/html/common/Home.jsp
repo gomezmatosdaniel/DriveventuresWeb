@@ -13,18 +13,20 @@
     <title>Driveventures</title>
 
 
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   
-    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
     <!-- Plugin CSS -->
-    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="../vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/creative.min.css" rel="stylesheet">
+    <link href="../css/creative.min.css" rel="stylesheet">
+    
+   <script>(function(w, d) { w.CollectId = "607486f25d8493507d58346d"; var h = d.head || d.getElementsByTagName("head")[0]; var s = d.createElement("script"); s.setAttribute("type", "text/javascript"); s.async=true; s.setAttribute("src", "https://collectcdn.com/launcher.js"); h.appendChild(s); })(window, document);</script>
 
   </head>
 
@@ -42,7 +44,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="Residencia.jsp">Viajes</a>
+              <a class="nav-link js-scroll-trigger" href="../Residencia.jsp">Viajes</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#about">Tarifas</a>
@@ -54,7 +56,7 @@
               <a class="nav-link js-scroll-trigger" href="#contact">Contacto</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="registro.jsp">Registrate</a>
+              <a class="nav-link js-scroll-trigger" href="../registro.jsp">Registrate</a>
             </li>
             
             <li class="nav-item">
@@ -185,7 +187,7 @@
           <div class="col-lg-8 mx-auto text-center">
             <h2 class="section-heading text-white">Nuestros Precios</h2>
             <hr class="light my-4">
-            <p class="text-faded mb-4">En Driveventures le ofrecemos la posibilidad de calcular la estimación de la tarifa de su taxi individual en un par de segundos, de forma gratuita.</p>
+            <p class="text-faded mb-4">En Driveventures le ofrecemos la posibilidad de calcular la estimación de la tarifa de su viaje individual en un par de segundos, de forma gratuita.</p>
             <p class="text-faded mb-4">Nuestra tarifa estimada tiene en cuenta la cantidad de pasajeros, la distancia y la duración del viaje.</p>
               
             
@@ -263,18 +265,18 @@
         
 
     
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
  
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="vendor/scrollreveal/scrollreveal.min.js"></script>
-    <script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="../vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
  
-    <script src="js/creative.min.js"></script>
+    <script src="../js/creative.min.js"></script>
     
-    <script type="text/javascript" src="js/main.js"> </script>
+    <script type="text/javascript" src="../js/main.js"> </script>
 
   
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyARFfy8e5YPQHD5xS_9VP4N1PYCHXsI5Xc&libraries=places&callback=initMap"async defer></script>

@@ -5,7 +5,6 @@ import java.io.Writer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,7 +20,7 @@ import com.driveventures.Controller.utils.ParameterNames;
 import com.driveventures.Controller.utils.SessionAttributeNames;
 import com.driveventures.Controller.utils.SessionManager;
 import com.driveventures.model.Conductor;
-import com.driveventures.model.Usuario;
+import com.driveventures.service.CacheService;
 import com.driveventures.service.ConductorService;
 import com.driveventures.service.Impl.ConductorServiceImpl;
 
@@ -38,11 +37,12 @@ public class ConductorServlet extends HttpServlet {
 	private static Logger logger = LogManager.getLogger(UsuarioServlet.class);
 	
 	private ConductorService conductorService = null;
-       
+    private CacheService cacheService = null;
     
     public ConductorServlet() {
         super();
         conductorService = new ConductorServiceImpl();
+        
     }
 
 	
@@ -130,7 +130,7 @@ if (Actions.REGISTRO_CONDUCTOR.equalsIgnoreCase(action)){
 
 			
 			
-			try {
+			try { 
 				
 				Conductor c = null;
 				c = conductorService.login(email, password);

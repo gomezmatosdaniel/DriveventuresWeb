@@ -2,27 +2,27 @@ package com.driveventures.web;
 
 import java.io.IOException;
 import java.io.Writer;
-import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.mail.EmailException;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import com.driveventures.Controller.utils.Actions;
+import com.driveventures.Controller.utils.AttributeNames;
+import com.driveventures.Controller.utils.ErrorCodes;
 import com.driveventures.Controller.utils.Errors;
 import com.driveventures.Controller.utils.ParameterNames;
 import com.driveventures.Controller.utils.SessionAttributeNames;
 import com.driveventures.Controller.utils.SessionManager;
-import com.driveventures.model.Conductor;
+import com.driveventures.Controller.utils.ViewPaths;
 import com.driveventures.model.Usuario;
 import com.driveventures.service.ConductorService;
 import com.driveventures.service.UsuarioService;
@@ -72,24 +72,31 @@ public class UsuarioServlet extends HttpServlet {
 			request.setAttribute(email, email);
 			String password = request.getParameter(ParameterNames.PASSWORD);
 			request.setAttribute(password, password);
-			
-			if (request.getParameter("remember") != null) {
-				String remember = request.getParameter("remember");
-				System.out.println("remember : " + remember);
-				Cookie cUserName = new Cookie("cookuser", email.trim());
-				cUserName.setMaxAge(60 * 60 * 24 * 15);
-				response.addCookie(cUserName);
-			}
-			
-			System.out.println("Logeando a " + email + "....");
-			response.getWriter().append("Served at: ").append(request.getContextPath());
-	       Writer w = response.getWriter();
 
+			boolean hasErrors = false;
+
+			if (StringUtils.isEmpty(email)) {
+				hasErrors = true;
+				request.setAttribute(AttributeNames.ERROR_USER, Errors.REQUIRED_FIELD_ERROR);
+			}
+			if (StringUtils.isEmpty(password)) {
+				hasErrors = true;
+				
+				request.setAttribute(AttributeNames.ERROR_PASSWORD, Errors.REQUIRED_FIELD_ERROR);
+			}
+
+			if (hasErrors) {
+				// Si hay errores.. se los muestro y si no continuo
+				request.setAttribute(AttributeNames.EMAIL, email);
+				target = ViewPaths.LOGIN;
+			} else {
+			
 			
 			
 			try {
 				
 				Usuario u = null;
+	
 				u = usuarioService.login(email, password);
 				HttpSession session = request.getSession();
 		   		session.setAttribute("usr", u);
@@ -100,6 +107,7 @@ public class UsuarioServlet extends HttpServlet {
 				logger.warn(e.getMessage(),e);
 			}
 		
+		}
 		}
 		else if( Actions.LOGOUT.equalsIgnoreCase(action)) {
 			

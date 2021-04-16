@@ -13,6 +13,8 @@ public interface Actions {
 	public static final String BUENARUTA = "BuenaRuta";
 	public static final String BUENACONVERSACION = "BuenaConversacion";
 	public static final String EXCELENTESERVICIO = "ExcelenteServicio";
+	public static final String RESIDENCIA = "Residencia";
+
 	
 
 }

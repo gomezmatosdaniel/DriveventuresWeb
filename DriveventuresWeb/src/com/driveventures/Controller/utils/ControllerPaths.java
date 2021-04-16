@@ -9,6 +9,7 @@ public class ControllerPaths {
 		public static final String BUENARUTA = "/DriveventuresWeb/Viajes";
 		public static final String BUENACONVERSACION = "/DriveventuresWeb/Viajes";
 		public static final String EXCELENTESERVICIO = "/DriveventuresWeb/Viajes";
-	
+		public static final String RESIDENCIA = "/DriveventuresWeb/Viajes";
+
 	
 }

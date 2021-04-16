@@ -20,6 +20,7 @@ import com.driveventures.Controller.utils.Errors;
 import com.driveventures.Controller.utils.ParameterNames;
 import com.driveventures.model.Conductor;
 import com.driveventures.service.ConductorService;
+import com.driveventures.service.Results;
 import com.driveventures.service.Impl.ConductorServiceImpl;
 
 import DBCUtils.DataException;
@@ -108,7 +109,7 @@ if( Actions.BUENARUTA.equalsIgnoreCase(action)) {
 
 			try {
 				
-				List<Conductor> c = conductorService.findByExcelenteServicio(excelenteservicio);
+				Results<Conductor> c = conductorService.findByExcelenteServicio(excelenteservicio, excelenteservicio, excelenteservicio);
 				request.setAttribute("ViajesResult", c);
 				HttpSession session = request.getSession();
 				request.getRequestDispatcher("html/ViajesResult.jsp").forward(request, response);;
@@ -144,6 +145,28 @@ if( Actions.BUENARUTA.equalsIgnoreCase(action)) {
 			}
 		
 			response.getWriter().append("Served at: ").append(request.getContextPath());
+		} else if( Actions.RESIDENCIA.equalsIgnoreCase(action)) {
+			
+			String Residencia = (request.getParameter("residencia"));
+			System.out.println("Buscando el conductor con " + Residencia + "....");
+			response.getWriter().append("Served at: ").append(request.getContextPath());
+	       Writer w = response.getWriter();
+	       
+	       try {
+	   		///capa de negocio
+	   		List<Conductor> c = conductorService.findByResidencia(Residencia.trim());
+	   		request.setAttribute("ResidenciaResults", c);
+	   		w.append("Coche:");
+	   		w.append(c.toString());
+	   		request.getRequestDispatcher("/html/ResidenciaResults.jsp").forward(request, response);;
+	   		
+	   	} catch (DataException de) {
+	   		de.printStackTrace();
+	   		w.append(de.getMessage());
+	   	} catch (SQLException e) {
+	   		w.append(e.getMessage());
+	   		e.printStackTrace();
+	   	}
 		}
 
 	}

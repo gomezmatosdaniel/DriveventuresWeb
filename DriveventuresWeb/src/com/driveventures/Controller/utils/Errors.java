@@ -7,36 +7,12 @@ import java.util.Map;
 
 public class Errors {
 	
-	private static final List<String> EMPTY_LIST = new ArrayList<String>();
-	private Map<String, List<String>> errorMap = null;
-
-	public Errors() {
-		errorMap = new HashMap<String, List<String>>();
-	}
-
-	public void addError(String clave, String error){
-
-		List<String> errors = errorMap.get(clave);
-		
-		if(errors == null) {
-			errors = new ArrayList<String>();
-			errorMap.put(clave, errors);
-		} 
-		
-		errors.add(error);
-	}
-
-	public boolean hasErrors() {
-		return !errorMap.isEmpty();
-	}
-	
-	public List<String> showErrors(String clave) throws Exception{
-		
-		List<String> errors = errorMap.get(clave);
-		
-		if (errors==null) {
-			errors = EMPTY_LIST;
-		}
-		return errors;
-		}
+	public static final String GENERIC_ERROR = "error.generico";
+	public static final String MISSING_PARAMETER_ERROR = "error.missing";
+	public static final String DUPLICATE_PARAMETER_ERROR = "error.duplicate";
+	public static final String REQUIRED_FIELD_ERROR = "error.requerido";		
+	public static final String USER_NOT_FOUND_ERROR = "error.user_not_found";
+	public static final String INCORRECT_PASSWORD_ERROR = "error.login";
+	public static final String ACCESS_ERROR = "error.acceso";
 }
+

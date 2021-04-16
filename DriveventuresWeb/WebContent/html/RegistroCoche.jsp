@@ -11,10 +11,16 @@
       <form action="<%=ControllerPaths.CONDUCTOR%>" method="post">
  <input type="hidden" name="<%=ParameterNames.ACTION%>"
 			value="<%=Actions.REGISTRO_COCHE%>" />
-      <input type="email" name="email" placeholder="email"/>
       <input type="text" name="Nombre" placeholder="Nombre"/>
-      <input type="text" name="Apellidos" placeholder="Apellidos"/>
-      <input type="password" name="Password" placeholder="Password"/>
+      <input type="number" name="anho_creacion" placeholder="Año Creación"/>
+      <input type="number" name="Plazas" placeholder="Plazas"/>
+      <input type="text" value="Matricula" name="Matricula"/>
+      <select name="Idioma">
+		<option value=Español>Español</option>
+		<option value=Inglés>Inglés</option>
+		<option value=Francés>Francés</option>
+		<option value=Alemán>Alemán</option>
+		<option value=Gallego>Gallego</option>
       <input type="submit" value="Registrarse" name="usuario"/>
       </form>
 

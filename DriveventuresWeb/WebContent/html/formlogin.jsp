@@ -16,14 +16,6 @@ pageEncoding="ISO-8859-1"%>
       <input type="submit" value="Login" name="UsuarioServlet"/>
       </form>
       
-      <form action="<%=ControllerPaths.CONDUCTOR%>" method="post">
- <input type="hidden" name="<%=ParameterNames.ACTION%>"
-			value="<%=Actions.LOGIN_CONDUCTOR%>" />
-		
-      <input type="email" name="<%=ParameterNames.EMAIL%>" value ="<%=ParamUtils.getParameter(request, ParameterNames.EMAIL)%>" placeholder="email"/>
-      <input type="password" name="<%=ParameterNames.PASSWORD%>" placeholder="password"/>
-      <input type="submit" value="Login" name="ConductorServlet"/>
-      </form>
 
 </body>
 </html>

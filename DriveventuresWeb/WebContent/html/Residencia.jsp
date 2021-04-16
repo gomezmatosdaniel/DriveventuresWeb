@@ -3,10 +3,11 @@
 
 
 
-<%@include file="/html/common/header.jsp"%>
+<%@include file="common/header.jsp"%>
 
-<form action="http://localhost:8080/HelloWorld/ConductorFind"
-	method="post">
+<form action="<%=ControllerPaths.RESIDENCIA%>" method="post">
+<input type="hidden" name="<%=ParameterNames.ACTION%>"
+		value="<%=Actions.RESIDENCIA%>" /> <br> <br>
 	<h3>Buscar por Residencia:</h3>
 	<input type="text" name="residencia" placeholder="Residencia" /> <input
 		type="submit" value="Buscar" name="residencia" />
