@@ -3,7 +3,7 @@
     
     
 
-<%@include file="/html/common/header.jsp"%>
+<%@include file="/common/header.jsp"%>
 
       <h3>Buscador</h3>
       

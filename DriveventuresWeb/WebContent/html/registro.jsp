@@ -3,7 +3,7 @@
     import="com.driveventures.Controller.utils.*"%>
 
 
-<%@include file="/html/common/header.jsp"%>
+<%@include file="/common/header.jsp"%>
 
 
 <h3>Registro</h3>

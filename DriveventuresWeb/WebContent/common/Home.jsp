@@ -4,7 +4,7 @@
 <html lang="es">
 
   <head>
-
+<link rel="icon" type="image/png" href="https://img.icons8.com/plasticine/100/000000/car--v1.png">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -44,7 +44,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="../Residencia.jsp">Viajes</a>
+              <a class="nav-link js-scroll-trigger" href="../html/Residencia.jsp">Viajes</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#about">Tarifas</a>
@@ -56,11 +56,15 @@
               <a class="nav-link js-scroll-trigger" href="#contact">Contacto</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="../registro.jsp">Registrate</a>
+              <a class="nav-link js-scroll-trigger" href="../html/registro.jsp">Registrate</a>
             </li>
             
             <li class="nav-item">
              <p>Usuario: <strong>${usr.nombre}</strong></p>
+            </li>
+            
+            <li class="nav-item">
+             <a href="<%=request.getContextPath()%>/Usuario?action=logout">Salir</a>
             </li>
             
           </ul>
@@ -165,7 +169,7 @@
                 <div class="col-md-6 col-sm-12">
                  <h5><strong>Buscar conductores cercanos</strong></h5>
                     <div id="paymentArea">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
   Buscar
 </button>
                         <button id="hiddenButton1" style="display: none" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong"></button>

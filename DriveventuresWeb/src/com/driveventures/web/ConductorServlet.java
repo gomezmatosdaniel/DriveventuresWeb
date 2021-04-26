@@ -2,6 +2,8 @@ package com.driveventures.web;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,9 +21,13 @@ import com.driveventures.Controller.utils.Errors;
 import com.driveventures.Controller.utils.ParameterNames;
 import com.driveventures.Controller.utils.SessionAttributeNames;
 import com.driveventures.Controller.utils.SessionManager;
+import com.driveventures.model.Coche;
 import com.driveventures.model.Conductor;
+import com.driveventures.model.Usuario;
 import com.driveventures.service.CacheService;
+import com.driveventures.service.CocheService;
 import com.driveventures.service.ConductorService;
+import com.driveventures.service.Impl.CocheServiceImpl;
 import com.driveventures.service.Impl.ConductorServiceImpl;
 
 import DBCUtils.DataException;
@@ -37,11 +43,15 @@ public class ConductorServlet extends HttpServlet {
 	private static Logger logger = LogManager.getLogger(UsuarioServlet.class);
 	
 	private ConductorService conductorService = null;
+	private CocheService cocheService = null;
     private CacheService cacheService = null;
+    
     
     public ConductorServlet() {
         super();
         conductorService = new ConductorServiceImpl();
+        cocheService = new CocheServiceImpl();
+        
         
     }
 
@@ -90,7 +100,7 @@ if (Actions.REGISTRO_CONDUCTOR.equalsIgnoreCase(action)){
 	   		request.setAttribute("Perfil", c);
 	   		w.append("Conductor:");
 	   		w.append(c.toString());
-	   		request.getRequestDispatcher("html/Home.jsp").forward(request, response);;
+	   		request.getRequestDispatcher("html/common/Home.jsp").forward(request, response);;
 	   		
 	   	} catch (DataException de) {
 	   		de.printStackTrace();
@@ -102,16 +112,45 @@ if (Actions.REGISTRO_CONDUCTOR.equalsIgnoreCase(action)){
 	   		e.printStackTrace();
 	   		w.append(e.getMessage());
 	   	} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 			
 		} else if( Actions.REGISTRO_COCHE.equalsIgnoreCase(action)) {
 			
-			SessionManager.set(request, SessionAttributeNames.USER, null);
+			String nombre = request.getParameter("nombre");
+			Integer anho_creacion = Integer.parseInt(request.getParameter("anho_creacion"));
+			Integer plazas = Integer.parseInt(request.getParameter("plazas"));
+			String matricula = request.getParameter("matricula");
+			Long modelo = Long.parseLong(request.getParameter("modelo"));
+			Long user_id = Long.parseLong(request.getParameter("user_id"));
 			
-			target = "";
-			redirect = true;
+			System.out.println("Registrando el coche " + nombre + "....");
+			response.getWriter().append("Served at: ").append(request.getContextPath());
+	       Writer w = response.getWriter();
+	       
+	       try {
+		   		//capa de negocio
+		    	   Coche c = new Coche();
+		    	   c.setNombre(nombre);
+		    	   c.setFechaMatriculacion(anho_creacion);
+		    	   c.setPlazas(plazas);
+		    	   c.setMatricula(matricula);
+		    	   c.setIdModelo(modelo);
+		    	   HttpSession session = request.getSession();
+		    	   c.setIdConductor((Long) session.getAttribute("sesion_idusuario"));
+		   		c = cocheService.registrar(c);
+		   		request.setAttribute("Perfil", c);
+
+		   		request.getRequestDispatcher("html/common/Home.jsp").forward(request, response);;
+		   		
+		   	} catch (DataException de) {
+		   		de.printStackTrace();
+		   		w.append(de.getMessage());
+		   		
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
 			
 			
 		}  else if(Actions.LOGIN_CONDUCTOR.equalsIgnoreCase(action)) {
@@ -143,8 +182,62 @@ if (Actions.REGISTRO_CONDUCTOR.equalsIgnoreCase(action)){
 			}
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		} else if(Actions.MIS_COCHES.equalsIgnoreCase(action)) {
+			
+
+			Usuario u = (Usuario) SessionManager.get(request, SessionAttributeNames.USER);
+			
+			Long id = Long.valueOf(u.getId());
+
+			logger.info("Buscando el coche del usuario " + u.getId() + "....");
+			response.getWriter().append("Served at: ").append(request.getContextPath());
+			Writer w = response.getWriter();
+
+
+
+			try {
+				
+				Coche c = null;
+				
+				 c = cocheService.findById(id);
+				request.setAttribute("Coche", c);
+				HttpSession session = request.getSession();
+				request.getRequestDispatcher("html/Coche.jsp").forward(request, response);;
+			} catch (DataException e) {
+				logger.warn(e.getMessage(),e);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		} else if(Actions.DELETE_COCHE.equalsIgnoreCase(action)) {
+
+			Usuario u = (Usuario) SessionManager.get(request, SessionAttributeNames.USER);
+			
+			Long id = Long.valueOf(u.getId());
+			
+			  Writer w = response.getWriter();
+			  
+			try {
+			
+				cocheService.delete(id);
+				request.getRequestDispatcher("/common/Home.jsp").forward(request, response);;
+			}
+			catch (DataException de) {
+		   		de.printStackTrace();
+		   		w.append(de.getMessage());
+		   		} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
 		}
-	}
+			
+			
+		}
+	
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

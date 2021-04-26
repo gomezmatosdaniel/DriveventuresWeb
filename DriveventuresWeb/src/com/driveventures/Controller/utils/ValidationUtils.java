@@ -12,7 +12,7 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import com.mysql.cj.util.StringUtils;
-import com.driveventures.Controller.utils.Error;
+import com.driveventures.Controller.utils.Errores;
 
 public class ValidationUtils {
 
@@ -29,7 +29,7 @@ public class ValidationUtils {
 		public static final Pattern PASS_PATTERN =  Pattern.compile("^(?=.{8,255}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*$");
 		public static final Pattern LETTER_PATTERN = Pattern.compile("^[a-zA-Z]{1}");
 		
-		public static String letterValidator(String param, Error errors, String clave, Boolean mandatory) {
+		public static String letterValidator(String param, Errores errors, String clave, Boolean mandatory) {
 			String s = null; 
 
 			if(!StringUtils.isEmptyOrWhitespaceOnly(param)) {
@@ -49,7 +49,7 @@ public class ValidationUtils {
 			}
 		}
 
-		public static String nifValidator(String param, Error errors, String clave, Boolean mandatory) {
+		public static String nifValidator(String param, Errores errors, String clave, Boolean mandatory) {
 			String s = null; 
 
 			if(!StringUtils.isEmptyOrWhitespaceOnly(param)) {
@@ -72,7 +72,7 @@ public class ValidationUtils {
 			
 		}
 		
-		public static String ibanValidator(String param, Error errors, String clave, Boolean mandatory) {
+		public static String ibanValidator(String param, Errores errors, String clave, Boolean mandatory) {
 			String s = null; 
 
 			if(!StringUtils.isEmptyOrWhitespaceOnly(param)) {
@@ -95,7 +95,7 @@ public class ValidationUtils {
 			
 		}
 		
-		public static String namesOnlyLettersValidator(String param, Error errors, String clave, Boolean mandatory) {
+		public static String namesOnlyLettersValidator(String param, Errores errors, String clave, Boolean mandatory) {
 
 			String s = null; 
 
@@ -117,7 +117,7 @@ public class ValidationUtils {
 
 		}
 
-		public static String namesWithNumbersValidator(String param, Error errors, String clave, Boolean mandatory) {
+		public static String namesWithNumbersValidator(String param, Errores errors, String clave, Boolean mandatory) {
 
 			String s = null; 
 
@@ -139,7 +139,7 @@ public class ValidationUtils {
 
 		}
 
-		public static String emailValidator(String param, Error errors, String clave, Boolean mandatory) {
+		public static String emailValidator(String param, Errores errors, String clave, Boolean mandatory) {
 
 			String s = null;
 			if(!StringUtils.isEmptyOrWhitespaceOnly(param)) {
@@ -163,7 +163,7 @@ public class ValidationUtils {
 		}
 
 
-		public static String passwordValidator (String param, Error errors, String clave, Boolean mandatory) {
+		public static String passwordValidator (String param, Errores errors, String clave, Boolean mandatory) {
 
 			String s = null;
 
@@ -190,7 +190,7 @@ public class ValidationUtils {
 
 
 
-		public static Integer intValidator(String param, Error errors, String clave, Boolean mandatory) {
+		public static Integer intValidator(String param, Errores errors, String clave, Boolean mandatory) {
 
 			Integer i = null;
 			try {
@@ -213,7 +213,7 @@ public class ValidationUtils {
 
 		} 
 
-		public static Long longValidator(String param, Error errors, String clave, Boolean mandatory) {
+		public static Long longValidator(String param, Errores errors, String clave, Boolean mandatory) {
 
 			Long l = null;
 			try {
@@ -237,7 +237,7 @@ public class ValidationUtils {
 
 		} 
 
-		public static Double doubleValidator(String param, Error errors, String clave, Boolean mandatory) {
+		public static Double doubleValidator(String param, Errores errors, String clave, Boolean mandatory) {
 
 			Double d = null;
 			try {
@@ -262,7 +262,7 @@ public class ValidationUtils {
 		} 
 
 		
-		public static Date dateValidator(String param, Error errors, String clave, Boolean mandatory) {
+		public static Date dateValidator(String param, Errores errors, String clave, Boolean mandatory) {
 
 			Date d = null;
 
@@ -288,7 +288,7 @@ public class ValidationUtils {
 
 		}
 
-		public static String stringValidator(String param, Error errors, String clave, Boolean mandatory) {
+		public static String stringValidator(String param, Errores errors, String clave, Boolean mandatory) {
 
 			String s = null;
 

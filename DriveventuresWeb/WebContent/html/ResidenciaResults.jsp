@@ -5,7 +5,7 @@
 <%@ page import="java.util.List"%>
 
 
-<%@include file="/html/common/header.jsp"%>
+<%@include file="/common/header.jsp"%>
 
 <h2>Conductores cercanos:</h2>
 <table border="1">
@@ -30,10 +30,10 @@ for (Conductor co : c)
                "<td> "+co.getExcelenteserviscio()           +"    </td>"+
                "<td> "+co.getNumviajes()      +"      </td>"+
                "<td> "+co.getResidencia()             +"      </td>"+ 
+              
              "</tr>");
   
-  
-}
+} 
 
 %>
 

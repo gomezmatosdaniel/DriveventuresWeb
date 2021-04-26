@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Error {		
+public class Errores {		
 		private static final List<String> EMPTY_LIST = new ArrayList<String>();
 		private Map<String, List<String>> errorMap = null;
 
-		public Error() {
+		public Errores() {
 			errorMap = new HashMap<String, List<String>>();
 		}
 

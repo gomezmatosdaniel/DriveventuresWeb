@@ -3,7 +3,7 @@ package com.driveventures.Controller.utils;
 public class ViewPaths {
 
 
-	public static final String HOME = "/html/Home.jsp";
+	public static final String HOME = "/common/Home.jsp";
 	public static final String LOGIN = "/html/login.jsp";
 	public static final String BUSCADOR = "/html/buscador-page.jsp";
 	public static final String REGISTRO = "/html/registro-page.jsp";

@@ -3,7 +3,7 @@
 
 
 
-<%@include file="common/header.jsp"%>
+<%@include file="/common/header.jsp"%>
 
 <form action="<%=ControllerPaths.RESIDENCIA%>" method="post">
 <input type="hidden" name="<%=ParameterNames.ACTION%>"
