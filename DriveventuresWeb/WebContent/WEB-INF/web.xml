@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
-  <display-name>Driveventures</display-name>
+  <display-name>DriveventuresWeb</display-name>
   <welcome-file-list>
-    <welcome-file>Home.jsp</welcome-file>
+    <welcome-file>html/common/Home.jsp</welcome-file>
   </welcome-file-list>
   <error-page>
 		<error-code>404</error-code>
@@ -10,14 +10,9 @@
 	</error-page>
 	<error-page>
 		<error-code>500</error-code>
-		<location>/error</location>
+		<location>/html/errors/Error500.jsp</location>
 	</error-page>
-  <filter>
-    <filter-name>LogFilter</filter-name>
-    <filter-class>com.driveventures.filter.LogFilter</filter-class>
-    </filter>
-    <filter-mapping>
-    <filter-name>LogFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-    </filter-mapping>
+    <error-page>
+        <location>/html/errors/error.jsp</location>
+  </error-page>  
 </web-app>

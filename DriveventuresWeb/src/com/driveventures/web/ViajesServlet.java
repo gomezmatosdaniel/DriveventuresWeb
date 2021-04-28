@@ -109,7 +109,7 @@ if( Actions.BUENARUTA.equalsIgnoreCase(action)) {
 
 			try {
 				
-				Results<Conductor> c = conductorService.findByExcelenteServicio(excelenteservicio, excelenteservicio, excelenteservicio);
+				List<Conductor> c = conductorService.findByExcelenteServicio(excelenteservicio);
 				request.setAttribute("ViajesResult", c);
 				HttpSession session = request.getSession();
 				request.getRequestDispatcher("html/ViajesResult.jsp").forward(request, response);;

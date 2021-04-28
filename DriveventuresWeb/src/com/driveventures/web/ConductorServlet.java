@@ -60,19 +60,17 @@ public class ConductorServlet extends HttpServlet {
 		
 		String action = request.getParameter(ParameterNames.ACTION);
 
-		Errors errors = new Errors();
-
 		String target = null;
 		boolean redirect = false;
 		
 		
-		String url = "";
-		
 if (Actions.REGISTRO_CONDUCTOR.equalsIgnoreCase(action)){
 			
+	Usuario u = (Usuario) SessionManager.get(request, SessionAttributeNames.USER);
+	
+	
 		
-			Long user_id = Long.parseLong(request.getParameter("user_id"));
-			
+
 			String dni = request.getParameter("dni");
 			request.setAttribute(dni, dni);
 			
@@ -91,7 +89,7 @@ if (Actions.REGISTRO_CONDUCTOR.equalsIgnoreCase(action)){
 	   		//capa de negocio
 	    	   Conductor c = new Conductor();
 	    	   HttpSession session = request.getSession();
-	    	   c.setUser_id((Long) session.getAttribute("sesion_idusuario"));
+	    	   c.setUser_id(u.getId());
 	    	   c.setDni(dni);
 	    	   c.setResidencia(Residencia);
 	    	   c.setIdioma_principal(Idioma);
@@ -193,22 +191,23 @@ if (Actions.REGISTRO_CONDUCTOR.equalsIgnoreCase(action)){
 			logger.info("Buscando el coche del usuario " + u.getId() + "....");
 			response.getWriter().append("Served at: ").append(request.getContextPath());
 			Writer w = response.getWriter();
+			Coche c = null;
 
-
-
+       
 			try {
-				
-				Coche c = null;
-				
+			
 				 c = cocheService.findById(id);
+				 
+				 if (c == null) {
+					 request.getRequestDispatcher("html/RegistroCoche.jsp").forward(request, response);;
+				 }
 				request.setAttribute("Coche", c);
 				HttpSession session = request.getSession();
 				request.getRequestDispatcher("html/Coche.jsp").forward(request, response);;
 			} catch (DataException e) {
 				logger.warn(e.getMessage(),e);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				logger.warn(e.getMessage(), e);
 			}
 
 			response.getWriter().append("Served at: ").append(request.getContextPath());

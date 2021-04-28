@@ -24,12 +24,12 @@
 for (Conductor co : c) 
 {
   out.println("<tr>" +
-		  "<td> "+co.getNombre()          +"      </td>"+
-               "<td> "+co.getBuenaconversacion()           +"      </td>"+
-               "<td> "+co.getBuenaruta()   +"    </td>"+
-               "<td> "+co.getExcelenteserviscio()           +"    </td>"+
-               "<td> "+co.getNumviajes()      +"      </td>"+
-               "<td> "+co.getResidencia()             +"      </td>"+ 
+		  "<td>"+co.getNombre()+"</td>"+
+               "<td> "+co.getBuenaconversacion()+"</td>"+
+               "<td> "+co.getBuenaruta()+"</td>"+
+               "<td> "+co.getExcelenteserviscio()+"</td>"+
+               "<td> "+co.getNumviajes()+"</td>"+
+               "<td> "+co.getResidencia()+"</td>"+ 
               
              "</tr>");
   

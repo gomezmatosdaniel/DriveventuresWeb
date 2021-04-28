@@ -4,10 +4,10 @@ public class ParameterNames {
 
 	public static final String ACTION = "action";
 	public static final String ID = "id";
-	public static final String NOMBRE = "nombre";
+	public static final String NOMBRE = "Nombre";
 	public static final String EMAIL = "email";
-	public static final String APELLIDOS = "apellidos";
-	public static final String PASSWORD = "password";
+	public static final String APELLIDOS = "Apellidos";
+	public static final String PASSWORD = "Password";
 	public static final String VIAJES = "viajes";
 	public static final String DNI = "dni";
 	public static final String CIUDAD= "ciudad";
