@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-import="com.driveventures.Controller.utils.*"
+import="com.driveventures.utils.*"
 
 pageEncoding="ISO-8859-1"%>
 
