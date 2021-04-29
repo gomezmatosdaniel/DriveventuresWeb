@@ -41,13 +41,9 @@ Usuario usuario = (Usuario) SessionManager.get(request, SessionAttributeNames.US
 		
 		</form>
 		
-		<% if (SessionManager.get(request, SessionAttributeNames.CONDUCTOR) == null) {
-            
-            } else {
-%>
+		
 		
 		<p><a href="<%=request.getContextPath()%>/html/user/RegistroConductor.jsp">Registro Conductor</a></p>
-  <%   }%>
 		
 		
 		
