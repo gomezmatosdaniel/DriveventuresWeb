@@ -29,8 +29,6 @@ Usuario usuario = (Usuario) SessionManager.get(request, SessionAttributeNames.US
 
 	<input type="text" value=<%=usuario.getEmail()%> name="Email">
 
-	<input type="password" value=<%=usuario.getPassword()%> name="Password">
-
 	<input type="submit" value="Guardar" name="usuario" />
 
 </form>
@@ -42,6 +40,14 @@ Usuario usuario = (Usuario) SessionManager.get(request, SessionAttributeNames.US
 		<input type="submit" value="Borrar Cuenta" name="usuario" />
 		
 		</form>
+		
+		<% if (SessionManager.get(request, SessionAttributeNames.CONDUCTOR) == null) {
+            
+            } else {
+%>
+		
+		<p><a href="<%=request.getContextPath()%>/html/user/RegistroConductor.jsp">Registro Conductor</a></p>
+  <%   }%>
 		
 		
 		

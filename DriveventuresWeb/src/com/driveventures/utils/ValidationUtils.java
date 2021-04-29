@@ -26,6 +26,29 @@ public class ValidationUtils {
 	public static final Pattern PHONE_PATTERN = Pattern.compile("^[0-9]{9,30}$");
 	public static final Pattern PASS_PATTERN =  Pattern.compile("^(?=.{8,255}$)(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*$");
 	public static final Pattern LETTER_PATTERN = Pattern.compile("^[a-zA-Z]{1}");
+	public static final Pattern YEAR_ONLY = Pattern.compile("^(19|20)\\d{2}$");
+	
+	
+
+
+	
+	public static String matriculaValidator(String param, Errors errors, String clave, Boolean mandatory) {
+		String s = null;
+
+
+		 if (param.toUpperCase().matches("^[0-9]{4}[A-Z]{3}$")) {
+		        logger.info("Matrícula válida");
+		       
+
+		    }else{
+
+		    	 logger.info("Matrícula inválida");
+		       
+		    }
+		return null;      
+		}
+		
+	
 	
 	public static String letterValidator(String param, Errors errors, String clave, Boolean mandatory) {
 		String s = null; 

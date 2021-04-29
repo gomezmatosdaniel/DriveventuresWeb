@@ -69,12 +69,18 @@
             
            
             <li class="nav-item">
-             <p>Usuario: <strong>${usr.nombre}</strong></p>
+             <p> <a href="<%=request.getContextPath()%>/html/user/Perfil.jsp"> Usuario: <strong>${usr.nombre}</strong>  </a></p>
             </li>
             
+             <% if (SessionManager.get(request, SessionAttributeNames.USER) == null) {
+            
+            } else {
+%>          
             <li class="nav-item">
              <a href="<%=request.getContextPath()%>/Usuario?action=logout">Salir</a>
             </li>
+            
+             <%   }%>
             
           </ul>
         </div> 

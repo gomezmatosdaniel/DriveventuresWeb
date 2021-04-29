@@ -93,7 +93,7 @@
 		
 	</select> 
 	<input type="hidden" name="user_id" value="${usr.id}" /> 
-	<input type="submit" value="registro_coche" name="ConductorServlet" />
+	<input type="submit" value="Registrar Coche" name="ConductorServlet" />
 </form>
 
 </body>

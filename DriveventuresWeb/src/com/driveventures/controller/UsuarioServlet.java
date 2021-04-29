@@ -1,7 +1,6 @@
 package com.driveventures.controller;
 
 import java.io.IOException;
-
 import java.io.Writer;
 
 import javax.servlet.ServletException;
@@ -16,6 +15,7 @@ import org.apache.commons.mail.EmailException;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
+import com.driveventures.model.Conductor;
 import com.driveventures.model.Usuario;
 import com.driveventures.service.ConductorService;
 import com.driveventures.service.UsuarioService;
@@ -67,6 +67,9 @@ public class UsuarioServlet extends HttpServlet {
 			String email = request.getParameter(ParameterNames.EMAIL.trim());
 			String password = request.getParameter(ParameterNames.PASSWORD.trim());
 			
+			password = ValidationUtils.passwordValidator(password,errors,ParameterNames.PASSWORD, true);
+			email = ValidationUtils.emailValidator(email,errors,ParameterNames.EMAIL, true);
+			
 			boolean hasErrors = false;
 			
 			
@@ -87,14 +90,13 @@ public class UsuarioServlet extends HttpServlet {
 			try {
 				
 				Usuario u = null;
-				String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
-		        System.out.println(gRecaptchaResponse);
+				Conductor c = null;
 
 				u = usuarioService.login(email.trim(), password.trim());
 				if (u==null) {
 					request.setAttribute(AttributeNames.ERROR, Errores.USER_NOT_FOUND);
 					request.getRequestDispatcher(ViewPaths.LOGIN).forward(request, response);
-					
+					return;
 					
 				}
 				if(email == null || "".equals(email) || password == null || "".equals(password)){
@@ -102,13 +104,16 @@ public class UsuarioServlet extends HttpServlet {
 				}
 				HttpSession session = request.getSession();
 		   		session.setAttribute("usr", u);
-		   		session.setAttribute("sesion_idusuario", u.getId());
+		   		session.setAttribute("conductor", c);
 				request.setAttribute("results", u);
-				request.getRequestDispatcher("/Home.jsp").forward(request, response);
+				request.getRequestDispatcher(ViewPaths.HOME).forward(request, response);
+				return;
+				
+				
 			} catch (DataException e) {
 				logger.warn(e.getMessage(),e);
-				request.setAttribute(AttributeNames.ERROR, Errores.GENERIC_ERROR);
 				request.getRequestDispatcher(ViewPaths.LOGIN).forward(request, response);
+				return;
 			} 
 		
 		
@@ -119,7 +124,7 @@ public class UsuarioServlet extends HttpServlet {
 			
 			if (SessionAttributeNames.USER != null) {
 			SessionManager.set(request, SessionAttributeNames.USER, null);
-			request.getRequestDispatcher("html/common/Home.jsp").forward(request, response);
+			request.getRequestDispatcher(ViewPaths.HOME).forward(request, response);
 			} 
 			
 			
@@ -172,7 +177,7 @@ public class UsuarioServlet extends HttpServlet {
 			}
 			if (hasErrors) {
 				// Si hay errores.. se los muestro y no continuo
-				request.getRequestDispatcher("html/registro.jsp").forward(request, response);
+				request.getRequestDispatcher(ViewPaths.REGISTRO).forward(request, response);
 			} else {
 			
 			
@@ -206,17 +211,17 @@ public class UsuarioServlet extends HttpServlet {
 	   		de.printStackTrace();
 	   		w.append(de.getMessage());
 	   		request.setAttribute(AttributeNames.ERROR, Errores.GENERIC_ERROR);
-			request.getRequestDispatcher("html/registro.jsp").forward(request, response);
+			request.getRequestDispatcher(ViewPaths.REGISTRO).forward(request, response);
 	   		} catch(MailException e) {
 	   		e.printStackTrace();
 	   		w.append(e.getMessage());
 	   		request.setAttribute(AttributeNames.ERROR, Errores.GENERIC_ERROR);
-			request.getRequestDispatcher("html/registro.jsp").forward(request, response);
+			request.getRequestDispatcher(ViewPaths.REGISTRO).forward(request, response);
 	   	} catch (EmailException e) {
 	   		e.printStackTrace();
 	   		w.append(e.getMessage());
 	   		request.setAttribute(AttributeNames.ERROR, Errores.GENERIC_ERROR);
-			request.getRequestDispatcher("html/registro.jsp").forward(request, response);
+			request.getRequestDispatcher(ViewPaths.REGISTRO).forward(request, response);
 	   	}
 			}
 		} else if( Actions.EDITPROFILE.equalsIgnoreCase(action)) {
@@ -231,9 +236,6 @@ public class UsuarioServlet extends HttpServlet {
 			
 			String email = request.getParameter("Email");
 			request.setAttribute(apellidos, apellidos);
-			
-			String password = request.getParameter("Password");
-			request.setAttribute(password, password);
 			
 			System.out.println("Editando a " + nombre + "....");
 			response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -255,14 +257,10 @@ public class UsuarioServlet extends HttpServlet {
 				hasErrors = true;
 				request.setAttribute(AttributeNames.ERROR_USER, Errores.REQUIRED_FIELD);
 			}
-			
-			if (StringUtils.isEmpty(password)) {
-				hasErrors = true;
-				request.setAttribute(AttributeNames.ERROR_USER, Errores.REQUIRED_FIELD);
-			}
+
 			if (hasErrors) {
 				// Si hay errores.. se los muestro y no continuo
-				request.getRequestDispatcher("html/Perfil.jsp").forward(request, response);
+				request.getRequestDispatcher(ViewPaths.PERFIL).forward(request, response);
 			} else {
 			
 			try {
@@ -271,7 +269,6 @@ public class UsuarioServlet extends HttpServlet {
 		    	   u.setEmail(email);
 		    	   u.setNombre(nombre);
 		    	   u.setApellidos(apellidos);
-		    	   u.setPassword(password);
 		   		usuarioService.update(u);
 		   		
 		   		HttpSession session = request.getSession();
@@ -280,7 +277,7 @@ public class UsuarioServlet extends HttpServlet {
 		   		request.setAttribute("Perfil", u);
 		   		w.append("Usuario:");
 		   		w.append(u.toString());
-		   		request.getRequestDispatcher("html/Perfil.jsp").forward(request, response);;
+		   		request.getRequestDispatcher(ViewPaths.PERFIL).forward(request, response);;
 		   		
 		   	} catch (DataException de) {
 		   		de.printStackTrace();
@@ -296,15 +293,13 @@ public class UsuarioServlet extends HttpServlet {
 				if (SessionAttributeNames.USER != null) {
 					SessionManager.set(request, SessionAttributeNames.USER, null);
 					
-				request.getRequestDispatcher("html/common/Home.jsp").forward(request, response);;
+				request.getRequestDispatcher(ViewPaths.HOME).forward(request, response);;
 			}
 			}
 			catch (DataException de) {
-		   		de.printStackTrace();
+		   		
 		   		w.append(de.getMessage());
-		   		} catch (Exception e) {
-				e.printStackTrace();
-			}
+		   		} 
 		}
 	}
 		       

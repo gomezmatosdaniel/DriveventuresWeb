@@ -15,4 +15,17 @@
     <error-page>
         <location>/html/errors/error.jsp</location>
   </error-page>  
-</web-app>
+
+<filter>
+		<filter-name>AuthenticatorFilter</filter-name>
+		<filter-class>com.driveventures.filter.AuthenticatorFilter</filter-class>
+		</filter>
+		
+		<filter-mapping>
+		<filter-name>AuthenticatorFilter</filter-name>
+		<url-pattern>/html/user/*</url-pattern>
+	</filter-mapping>
+	
+	
+	
+	</web-app>
