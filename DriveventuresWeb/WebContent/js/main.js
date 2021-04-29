@@ -249,7 +249,7 @@ function initMap() {
                   document.getElementById('fareResult').innerText = '$' + fare.toFixed(2)
                   
                   if (document.getElementById('defaultCheck1').checked === true) {
-                      document.getElementById('fareResult').innerText += ' +$35 (annual registration fee)'
+                      document.getElementById('fareResult').innerText += ' +$35 (Tarifa por mascotas)'
                   } 
    
               }

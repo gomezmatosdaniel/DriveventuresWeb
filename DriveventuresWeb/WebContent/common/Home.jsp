@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+     <%@ page import="java.util.*,com.driveventures.model.*"
+	import="com.driveventures.utils.*"%>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -13,18 +15,18 @@
     <title>Driveventures</title>
 
 
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<%=request.getContextPath()%>/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
     <!-- Plugin CSS -->
-    <link href="../vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="../css/creative.min.css" rel="stylesheet">
+    <!-- styles-->
+    <link href="<%=request.getContextPath()%>/css/creative.min.css" rel="stylesheet">
     
 
   </head>
@@ -36,14 +38,14 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="Home.jsp"> Driveventures</a>
+        <a class="navbar-brand js-scroll-trigger" href="<%=request.getContextPath()%>/common/Home.jsp"> Driveventures</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="../html/Residencia.jsp">Viajes</a>
+              <a class="nav-link js-scroll-trigger" href="<%=request.getContextPath()%>/html/Residencia.jsp">Viajes</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#about">Tarifas</a>
@@ -54,10 +56,18 @@
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Contacto</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="../html/registro.jsp">Registrate</a>
-            </li>
             
+            <% if (SessionManager.get(request, SessionAttributeNames.USER) != null) {
+            
+            } else {
+%>
+            	  <li class="nav-item">
+                  <a class="nav-link js-scroll-trigger" href="<%=request.getContextPath()%>/html/registro.jsp">Registrate</a>
+                </li>
+            	
+     <%   }%>
+            
+           
             <li class="nav-item">
              <p>Usuario: <strong>${usr.nombre}</strong></p>
             </li>
@@ -268,16 +278,16 @@
         
 
     
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="<%=request.getContextPath()%>/vendor/jquery/jquery.min.js"></script>
+    <script src="<%=request.getContextPath()%>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
  
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="../vendor/scrollreveal/scrollreveal.min.js"></script>
-    <script src="../vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="<%=request.getContextPath()%>/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="<%=request.getContextPath()%>/vendor/scrollreveal/scrollreveal.min.js"></script>
+    <script src="<%=request.getContextPath()%>/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
 
  
-    <script src="../js/creative.min.js"></script>
+    <script src="<%=request.getContextPath()%>/js/creative.min.js"></script>
     
     <script type="text/javascript" src="../js/main.js"> </script>
 
