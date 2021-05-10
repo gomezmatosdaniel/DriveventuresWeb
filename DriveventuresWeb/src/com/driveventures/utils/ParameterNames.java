@@ -17,5 +17,5 @@ public class ParameterNames {
 	public static final String ANHO_CREACION ="anho_creacion";
 	public static final String PLAZAS ="plazas";
 	public static final String MATRICULA ="matricula";
-	
+	public static final String CHECKED ="checked";
 }

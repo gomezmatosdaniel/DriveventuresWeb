@@ -1,19 +1,22 @@
 package com.driveventures.controller;
 
 import java.io.IOException;
+
 import java.io.Writer;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang3.StringUtils;
+import com.mysql.cj.util.StringUtils;
 import org.apache.commons.mail.EmailException;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
+
 
 import com.driveventures.model.Conductor;
 import com.driveventures.model.Usuario;
@@ -23,6 +26,7 @@ import com.driveventures.service.Impl.ConductorServiceImpl;
 import com.driveventures.service.Impl.UsuarioServiceImpl;
 import com.driveventures.utils.Actions;
 import com.driveventures.utils.AttributeNames;
+import com.driveventures.utils.CookieManager;
 import com.driveventures.utils.Errores;
 import com.driveventures.utils.Errors;
 import com.driveventures.utils.ParameterNames;
@@ -30,6 +34,7 @@ import com.driveventures.utils.SessionAttributeNames;
 import com.driveventures.utils.SessionManager;
 import com.driveventures.utils.ValidationUtils;
 import com.driveventures.utils.ViewPaths;
+import com.driveventures.utils.WebConstants;
 
 import DBCUtils.DataException;
 import DBCUtils.MailException;
@@ -73,11 +78,11 @@ public class UsuarioServlet extends HttpServlet {
 			boolean hasErrors = false;
 			
 			
-			if (StringUtils.isEmpty(email)) {
+			if (StringUtils.isNullOrEmpty(email)) {
 				hasErrors = true;
 				request.setAttribute(AttributeNames.ERROR_USER, Errores.REQUIRED_FIELD);
 			}
-			if (StringUtils.isEmpty(password)) {
+			if (StringUtils.isNullOrEmpty(password)) {
 				hasErrors = true;
 				request.setAttribute(AttributeNames.ERROR_PASSWORD, Errores.REQUIRED_FIELD);
 			}
@@ -140,7 +145,7 @@ public class UsuarioServlet extends HttpServlet {
 			
 			boolean hasErrors = false;
 			
-			if (StringUtils.isEmpty(email)) {
+			if (StringUtils.isNullOrEmpty(email)) {
 				hasErrors = true;
 				request.setAttribute(AttributeNames.ERROR_USER, Errores.REQUIRED_FIELD);
 			}
@@ -149,7 +154,7 @@ public class UsuarioServlet extends HttpServlet {
 				request.setAttribute(AttributeNames.ERROR_USER, Errores.REQUIRED_FIELD);
 			}
 			
-			if (StringUtils.isEmpty(nombre)) {
+			if (StringUtils.isNullOrEmpty(nombre)) {
 				hasErrors = true;
 				request.setAttribute(AttributeNames.ERROR_USER, Errores.REQUIRED_FIELD);
 			}
@@ -158,7 +163,7 @@ public class UsuarioServlet extends HttpServlet {
 				request.setAttribute(AttributeNames.ERROR_USER, Errores.REQUIRED_FIELD);
 			}
 			
-			if (StringUtils.isEmpty(apellidos)) {
+			if (StringUtils.isNullOrEmpty(apellidos)) {
 				hasErrors = true;
 				request.setAttribute(AttributeNames.ERROR_USER, Errores.REQUIRED_FIELD);
 			}
@@ -167,7 +172,7 @@ public class UsuarioServlet extends HttpServlet {
 				request.setAttribute(AttributeNames.ERROR_USER, Errores.REQUIRED_FIELD);
 			}
 			
-			if (StringUtils.isEmpty(password)) {
+			if (StringUtils.isNullOrEmpty(password)) {
 				hasErrors = true;
 				request.setAttribute(AttributeNames.ERROR_USER, Errores.REQUIRED_FIELD);
 			}
@@ -243,17 +248,17 @@ public class UsuarioServlet extends HttpServlet {
 	       
 	       boolean hasErrors = false;
 	       
-	       if (StringUtils.isEmpty(nombre)) {
+	       if (StringUtils.isNullOrEmpty(nombre)) {
 				hasErrors = true;
 				request.setAttribute(AttributeNames.ERROR_USER, Errores.REQUIRED_FIELD);
 			}
 			
-			if (StringUtils.isEmpty(apellidos)) {
+			if (StringUtils.isNullOrEmpty(apellidos)) {
 				hasErrors = true;
 				request.setAttribute(AttributeNames.ERROR_USER, Errores.REQUIRED_FIELD);
 			}
 			
-			if (StringUtils.isEmpty(email)) {
+			if (StringUtils.isNullOrEmpty(email)) {
 				hasErrors = true;
 				request.setAttribute(AttributeNames.ERROR_USER, Errores.REQUIRED_FIELD);
 			}
@@ -300,6 +305,25 @@ public class UsuarioServlet extends HttpServlet {
 		   		
 		   		w.append(de.getMessage());
 		   		} 
+		} else if(Actions.REMEMBERME.equalsIgnoreCase(action)) {
+			
+			String email = request.getParameter(ParameterNames.EMAIL);
+			String checked = request.getParameter(ParameterNames.CHECKED);
+
+			Boolean check = Boolean.valueOf(checked);
+
+			Cookie cookie = CookieManager.getCookie(request, WebConstants.REMEMBERME);
+
+			if(check){
+				if(!StringUtils.isEmptyOrWhitespaceOnly(email)) {
+					CookieManager.addCookie(response, WebConstants.REMEMBERME, email, "/", 365*24*60*60);
+				}
+			} else {
+				if (cookie != null) {
+					CookieManager.removeCookie(response, WebConstants.REMEMBERME, "/");
+				}
+			}
+			
 		}
 	}
 		       

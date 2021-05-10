@@ -45,6 +45,7 @@ Usuario usuario = (Usuario) SessionManager.get(request, SessionAttributeNames.US
 		
 		<p><a href="<%=request.getContextPath()%>/html/user/RegistroConductor.jsp">Registro Conductor</a></p>
 		
+		<p><a href="<%=request.getContextPath()%>/html/user/RegistroCoche.jsp">Registro Coche</a></p>
 		
 		
 
@@ -55,6 +56,8 @@ Usuario usuario = (Usuario) SessionManager.get(request, SessionAttributeNames.US
 		<input type="submit" value="Ver mi coche" name="usuario" />
 		
 		</form>
+		
+		
 
 </body>
 </html>

@@ -30,6 +30,7 @@ import com.driveventures.utils.Errors;
 import com.driveventures.utils.ParameterNames;
 import com.driveventures.utils.SessionAttributeNames;
 import com.driveventures.utils.SessionManager;
+import com.driveventures.utils.ViewPaths;
 
 import DBCUtils.DataException;
 import DBCUtils.MailException;
@@ -99,7 +100,7 @@ if (Actions.REGISTRO_CONDUCTOR.equalsIgnoreCase(action)){
 	   		request.setAttribute("Perfil", c);
 	   		w.append("Conductor:");
 	   		w.append(c.toString());
-	   		request.getRequestDispatcher("html/common/Home.jsp").forward(request, response);;
+	   		request.getRequestDispatcher(ViewPaths.PERFIL).forward(request, response);;
 	   		
 	   	} catch (DataException de) {
 	   		de.printStackTrace();
@@ -138,7 +139,7 @@ if (Actions.REGISTRO_CONDUCTOR.equalsIgnoreCase(action)){
 		   		c = cocheService.registrar(c);
 		   		request.setAttribute("Perfil", c);
 
-		   		request.getRequestDispatcher("html/common/Home.jsp").forward(request, response);;
+		   		request.getRequestDispatcher(ViewPaths.PERFIL).forward(request, response);;
 		   		
 		   	} catch (DataException de) {
 		   		de.printStackTrace();

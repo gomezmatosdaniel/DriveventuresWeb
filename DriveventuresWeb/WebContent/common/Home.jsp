@@ -27,13 +27,12 @@
 
     <!-- styles-->
     <link href="<%=request.getContextPath()%>/css/creative.min.css" rel="stylesheet">
+    <link href="<%=request.getContextPath()%>/js/cookies.js" rel="stylesheet">
     
 
   </head>
 
   <body id="page-top">
-  
-  
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -135,6 +134,8 @@
   </label>
 </div>
                     </div>
+                    
+                    
                     <button id="eventButton" class="btn btn-primary ">
                         VALE
                     </button>
@@ -148,7 +149,7 @@
         </div>
       </div>
     </header>
-    
+
     <section id="output" style="display: none">
        <div class="container">
        <div class="row">

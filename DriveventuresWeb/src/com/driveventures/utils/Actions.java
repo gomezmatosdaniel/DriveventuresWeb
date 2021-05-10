@@ -18,6 +18,7 @@ public interface Actions {
 	public static final String DELETE_ACCOUNT = "delete_account";
 	public static final String MIS_COCHES = "mis_coches";
 	public static final String DELETE_COCHE = "delete_coche";
+	public static final String REMEMBERME = "rememberme";
 	
 	
 

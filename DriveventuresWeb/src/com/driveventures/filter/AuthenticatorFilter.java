@@ -33,6 +33,7 @@ public class AuthenticatorFilter implements Filter {
 	private static Logger logger = LogManager.getLogger(AuthenticatorFilter.class);
 
     public AuthenticatorFilter() {
+    
     }
 
 	public void doFilter(ServletRequest request, 

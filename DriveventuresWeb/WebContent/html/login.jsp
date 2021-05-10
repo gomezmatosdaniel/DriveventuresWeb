@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
-    
+    <% Cookie cookie = CookieManager.getCookie(request, WebConstants.REMEMBERME);%>
 
 <%@include file="/common/header.jsp"%>
 
