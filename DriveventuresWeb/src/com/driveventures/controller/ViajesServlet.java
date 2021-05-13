@@ -20,6 +20,7 @@ import com.driveventures.service.ConductorService;
 import com.driveventures.service.Results;
 import com.driveventures.service.Impl.ConductorServiceImpl;
 import com.driveventures.utils.Actions;
+import com.driveventures.utils.CacheManager;
 import com.driveventures.utils.Errors;
 import com.driveventures.utils.ParameterNames;
 
@@ -62,7 +63,6 @@ if( Actions.BUENARUTA.equalsIgnoreCase(action)) {
 			
 
 			try {
-				
 				List<Conductor> c = conductorService.findByBuenaRuta(buenaruta);
 				request.setAttribute("ViajesResult", c);
 				HttpSession session = request.getSession();

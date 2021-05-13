@@ -44,6 +44,7 @@ public class VerificarRecaptcha {
             while ((inputLine = in.readLine()) != null) {
                 respuesta.append(inputLine);
             }
+            
             in.close();
             System.out.println(respuesta.toString());
             JsonReader jsonReader = Json.createReader(new StringReader(respuesta.toString()));
